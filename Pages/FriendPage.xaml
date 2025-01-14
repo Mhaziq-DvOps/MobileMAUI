@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MobileMAUI_2"
+             xmlns:pages="clr-namespace:MobileMAUI_2.Pages"
+             x:Class="MobileMAUI_2.Pages.FriendPage">
+
+    <StackLayout Padding="15" BackgroundColor="#f9f9f9" Spacing="15">
+        <!-- Add Friend Button -->
+        <Button Text="Add Friend"
+                Clicked="OnAddFriendClicked"
+                BackgroundColor="#0078D7"
+                TextColor="Black"
+                CornerRadius="5"
+                FontSize="16"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+
+        <!-- Form for Add/Edit Friend -->
+        <Frame IsVisible="False" x:Name="FriendFormFrame" Padding="15" BackgroundColor="Black" CornerRadius="10" HasShadow="True">
+            <StackLayout Spacing="10">
+                <Entry x:Name="NameEntry" Placeholder="Name" FontSize="14" />
+                <Entry x:Name="PhoneEntry" Placeholder="Phone" FontSize="14" />
+                <Entry x:Name="DescriptionEntry" Placeholder="Description" FontSize="14" />
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Button Text="Save"
+                            Clicked="OnSaveClicked"
+                            BackgroundColor="#4CAF50"
+                            TextColor="White"
+                            CornerRadius="5" />
+                    <Button Text="Cancel"
+                            Clicked="OnCancelClicked"
+                            BackgroundColor="#F44336"
+                            TextColor="White"
+                            CornerRadius="5" />
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+
+        <!-- CollectionView for displaying friends -->
+        <CollectionView x:Name="FriendsCollectionView"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSelectionChanged"
+                        BackgroundColor="#ffffff"
+                        Margin="0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="15" CornerRadius="10" BackgroundColor="Black" Margin="0,5" HasShadow="True">
+                        <StackLayout Spacing="5">
+                            <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" TextColor="#333333" />
+                            <Label Text="{Binding Phone}" FontSize="14" TextColor="#666666" />
+                            <Label Text="{Binding Description}" FontSize="14" TextColor="#999999" />
+                            <HorizontalStackLayout Spacing="10">
+                                <Button Text="Edit"
+                                        Clicked="OnEditClicked"
+                                        BackgroundColor="#FFC107"
+                                        TextColor="White"
+                                        CornerRadius="5" />
+                                <Button Text="Delete"
+                                        Clicked="OnDeleteClicked"
+                                        BackgroundColor="#D32F2F"
+                                        TextColor="White"
+                                        CornerRadius="5" />
+                            </HorizontalStackLayout>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

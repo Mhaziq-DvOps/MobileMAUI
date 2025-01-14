@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MobileMAUI_2"
+             xmlns:pages="clr-namespace:MobileMAUI_2.Pages"
+             x:Class="MobileMAUI_2.Pages.FoodPage">
+
+    <StackLayout Padding="15" BackgroundColor="#f9f9f9" Spacing="15">
+        <!-- Add Food Button -->
+        <Button Text="Add Food"
+                Clicked="OnAddFoodClicked"
+                BackgroundColor="#0078D7"
+                TextColor="White"
+                CornerRadius="5"
+                FontSize="16"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+
+        <!-- Form for Add/Edit Food -->
+        <Frame IsVisible="False" x:Name="FoodFormFrame" Padding="15" BackgroundColor="Black" CornerRadius="10" HasShadow="True">
+            <StackLayout Spacing="10">
+                <Entry x:Name="FoodNameEntry" Placeholder="Food Name" FontSize="14" />
+                <Entry x:Name="FoodDescriptionEntry" Placeholder="Description" FontSize="14" />
+                <Entry x:Name="RatingEntry" Placeholder="Rating (1-5)" Keyboard="Numeric" FontSize="14" />
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Button Text="Save"
+                            Clicked="OnSaveFoodClicked"
+                            BackgroundColor="#4CAF50"
+                            TextColor="White"
+                            CornerRadius="5" />
+                    <Button Text="Cancel"
+                            Clicked="OnCancelFoodClicked"
+                            BackgroundColor="#F44336"
+                            TextColor="White"
+                            CornerRadius="5" />
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+
+        <!-- CollectionView for displaying food -->
+        <CollectionView x:Name="FoodCollectionView"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSelectionChanged"
+                        Margin="0"
+                        BackgroundColor="#ffffff">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="15" CornerRadius="10" BackgroundColor="#f7f7f7" Margin="0,5">
+                        <StackLayout Spacing="5">
+                            <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" TextColor="#333333" />
+                            <Label Text="{Binding Description}" FontSize="14" TextColor="#666666" />
+                            <Label Text="Rating: {Binding Rating}" FontSize="14" TextColor="#0078D7" />
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <Button Text="Edit"
+                                        Clicked="OnEditFoodClicked"
+                                        BackgroundColor="#FFC107"
+                                        TextColor="White"
+                                        CornerRadius="5" />
+                                <Button Text="Delete"
+                                        Clicked="OnDeleteFoodClicked"
+                                        BackgroundColor="#D32F2F"
+                                        TextColor="White"
+                                        CornerRadius="5" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
